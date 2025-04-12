@@ -1,0 +1,36 @@
+{
+  "name": "nodejs-hw-mongodb",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint src/**/*.js",
+    "start": "node ./src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Koliesnikova-Kat/nodejs-hw-mongodb.git"
+  },
+  "keywords": [],
+  "author": "Kateryna Koliesnikova <koliesnikova.kateryna@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Koliesnikova-Kat/nodejs-hw-mongodb/issues"
+  },
+  "homepage": "https://github.com/Koliesnikova-Kat/nodejs-hw-mongodb#readme",
+  "devDependencies": {
+    "@eslint/js": "^9.24.0",
+    "eslint": "^9.24.0",
+    "globals": "^15.15.0",
+    "nodemon": "^3.1.9",
+    "express": "^4.x.x"
+  },
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "mongodb": "^6.15.0",
+    "mongoose": "^8.13.2"
+  }
+}
