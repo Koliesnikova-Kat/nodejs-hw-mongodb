@@ -2,4 +2,4 @@
 
 .env
 
-/src/contacts.json
+src/contacts.json
