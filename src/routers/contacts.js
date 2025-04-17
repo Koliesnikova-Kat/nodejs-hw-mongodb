@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import {
+  contactsHomePageController,
   createContactController,
   deleteContactController,
   getContactByIdController,
@@ -9,6 +10,8 @@ import {
 import { ctrlWrapper } from '../utils/ctrlWrapper.js';
 
 const router = Router();
+
+router.get('/', ctrlWrapper(contactsHomePageController));
 
 router.get('/contacts', ctrlWrapper(getContactsController));
 

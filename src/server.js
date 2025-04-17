@@ -19,10 +19,6 @@ export const setupServer = () => {
     }),
   );
 
-  app.get('/', (req, res) => {
-    res.json({ message: 'Contact List Home Page' });
-  });
-
   app.use(contactsRouter);
 
   app.use(notFoundHandler);
