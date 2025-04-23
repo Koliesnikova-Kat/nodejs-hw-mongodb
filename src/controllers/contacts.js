@@ -8,7 +8,8 @@ import {
 import createHttpError from 'http-errors';
 import { parsePaginationParams } from '../utils/parsePaginationParams.js';
 import { parseSortParams } from '../utils/parseSortParams.js';
-// import { parseFilterParams } from '../utils/parseFilterParams.js';
+import { contactSortFields } from '../db/models/contact.js';
+import { parseFilterParams } from '../utils/parseFilterParams.js';
 
 export const contactsHomePageController = async (req, res) => {
   res.json({ message: 'Contact List Home Page' });
@@ -16,15 +17,15 @@ export const contactsHomePageController = async (req, res) => {
 
 export const getContactsController = async (req, res) => {
   const { page, perPage } = parsePaginationParams(req.query);
-  const { sortBy, sortOrder } = parseSortParams(req.query);
-  // const filter = parseFilterParams(req.query);
+  const { sortBy, sortOrder } = parseSortParams(req.query, contactSortFields);
+  const filter = parseFilterParams(req.query);
 
   const contacts = await getAllContacts({
     page,
     perPage,
     sortBy,
     sortOrder,
-    // filter,
+    filter,
   });
 
   res.json({

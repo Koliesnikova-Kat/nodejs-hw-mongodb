@@ -1,32 +1,44 @@
+import { typeList } from '../constants/index.js';
+
 const parseType = (contactType) => {
   const isString = typeof contactType === 'string';
   if (!isString) return;
 
-  const isType = (contactType) =>
-    ['work', 'home', 'personal'].includes(contactType);
+  const isType = (contactType) => typeList.includes(contactType);
   if (isType(contactType)) return contactType;
 };
 
-const parseIsFavourite = (boolean) => {
+const parseBoolean = (boolean) => {
   const isString = typeof boolean === 'string';
   if (!isString) return;
 
-  const normalizedIsFavourite = boolean.toLowerCase().trim();
+  const normalizedBoolean = boolean.toLowerCase().trim();
 
-  if (normalizedIsFavourite === 'true') return true;
-  if (normalizedIsFavourite === 'false') return false;
+  if (normalizedBoolean === 'true') return true;
+  if (normalizedBoolean === 'false') return false;
 
   return;
 };
 
-export const parseFilterParams = (query) => {
-  const { type, isFavourite } = query;
+const parsePhoneNumber = (number) => {
+  const isString = typeof number === 'string';
+  if (!isString) return;
 
-  const parsedType = parseType(type);
-  const parsedIsFavourite = parseIsFavourite(isFavourite);
+  const cleanedNumber = number.trim();
+
+  return cleanedNumber;
+};
+
+export const parseFilterParams = (query) => {
+  const { contactType, isFavourite, phoneNumber } = query;
+
+  const parsedType = parseType(contactType);
+  const parsedIsFavourite = parseBoolean(isFavourite);
+  const parsedPhoneNumber = parsePhoneNumber(phoneNumber);
 
   return {
-    type: parsedType,
+    contactType: parsedType,
     isFavourite: parsedIsFavourite,
+    phoneNumber: parsedPhoneNumber,
   };
 };
