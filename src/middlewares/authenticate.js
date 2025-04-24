@@ -1,6 +1,5 @@
 import createHttpError from 'http-errors';
-import { SessionsCollection } from '../db/models/Session.js';
-import { UsersCollection } from '../db/models/User.js';
+import { findSession, findUser } from '../services/auth.js';
 
 export const authenticate = async (req, res, next) => {
   const authHeader = req.get('Authorization');
@@ -18,7 +17,7 @@ export const authenticate = async (req, res, next) => {
     return;
   }
 
-  const session = await SessionsCollection.findOne({ accessToken: token });
+  const session = await findSession({ accessToken: token });
 
   if (!session) {
     next(createHttpError(401, 'Session not found'));
@@ -32,10 +31,10 @@ export const authenticate = async (req, res, next) => {
     next(createHttpError(401, 'Access token expired'));
   }
 
-  const user = await UsersCollection.findById(session.userId);
+  const user = await findUser(session.userId);
 
   if (!user) {
-    next(createHttpError(401));
+    next(createHttpError(401, 'User not found'));
     return;
   }
 
