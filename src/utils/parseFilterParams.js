@@ -1,11 +1,11 @@
-import { typeList } from '../constants/index.js';
+import { typeList } from '../constants/contacts.js';
 
-const parseType = (contactType) => {
-  const isString = typeof contactType === 'string';
+const parseType = (type) => {
+  const isString = typeof type === 'string';
   if (!isString) return;
 
-  const isType = (contactType) => typeList.includes(contactType);
-  if (isType(contactType)) return contactType;
+  const isType = (type) => typeList.includes(type);
+  if (isType(type)) return type;
 };
 
 const parseBoolean = (boolean) => {
@@ -30,9 +30,9 @@ const parsePhoneNumber = (number) => {
 };
 
 export const parseFilterParams = (query) => {
-  const { contactType, isFavourite, phoneNumber } = query;
+  const { type, isFavourite, phoneNumber } = query;
 
-  const parsedType = parseType(contactType);
+  const parsedType = parseType(type);
   const parsedIsFavourite = parseBoolean(isFavourite);
   const parsedPhoneNumber = parsePhoneNumber(phoneNumber);
 
