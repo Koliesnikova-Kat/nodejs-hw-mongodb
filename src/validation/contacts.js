@@ -38,7 +38,7 @@ export const updateContactSchema = Joi.object({
     'string.max': 'Contact name should have at most {#limit} characters',
     'any.required': 'Contact name is required',
   }),
-  phoneNumber: Joi.number().integer().min(3).max(30).messages({
+  phoneNumber: Joi.string().pattern(phoneRegex).messages({
     'string.pattern.base':
       'Phone number must be a valid number (3-20 digits, optional +)',
     'any.required': 'Phone number is required',
