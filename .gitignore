@@ -3,3 +3,6 @@
 .env
 
 src/contacts.json
+
+**/temp/**
+**/upload/**
