@@ -28,7 +28,7 @@ const createSession = () => {
   };
 };
 
-const verifyEmailPath = path.join(TEMPLATES_DIR, 'verify-email.html');
+// const verifyEmailPath = path.join(TEMPLATES_DIR, 'verify-email.html');
 
 export const registerUser = async (payload) => {
   const { email, password } = payload;
@@ -37,57 +37,62 @@ export const registerUser = async (payload) => {
 
   const encryptedPassword = await bcrypt.hash(password, 10);
 
-  const newUser = await UsersCollection.create({
+  // const newUser = await UsersCollection.create({
+  //   ...payload,
+  //   password: encryptedPassword,
+  // });
+
+  // const token = jwt.sign({ email }, getEnvVar('JWT_SECRET'), {
+  //   expiresIn: '5m',
+  // });
+
+  // const templateSource = (await fs.readFile(verifyEmailPath)).toString();
+
+  // const template = handlebars.compile(templateSource);
+
+  // const html = template({
+  //   link: `${getEnvVar('APP_DOMAIN')}/verify?token=${token}`,
+  // });
+
+  // const verifyEmail = {
+  //   from: getEnvVar(SMTP.SMTP_FROM),
+  //   to: payload.email,
+  //   subject: 'Verify email',
+  //   html,
+  // };
+
+  // try {
+  //   await sendMail(verifyEmail);
+  // } catch {
+  //   throw createHttpError(
+  //     500,
+  //     'Failed to send the email, please try again later.',
+  //   );
+  // }
+
+  // return newUser;
+
+  return await UsersCollection.create({
     ...payload,
     password: encryptedPassword,
   });
-
-  const token = jwt.sign({ email }, getEnvVar('JWT_SECRET'), {
-    expiresIn: '5m',
-  });
-
-  const templateSource = (await fs.readFile(verifyEmailPath)).toString();
-
-  const template = handlebars.compile(templateSource);
-
-  const html = template({
-    link: `${getEnvVar('APP_DOMAIN')}/verify?token=${token}`,
-  });
-
-  const verifyEmail = {
-    from: getEnvVar(SMTP.SMTP_FROM),
-    to: payload.email,
-    subject: 'Verify email',
-    html,
-  };
-
-  try {
-    await sendMail(verifyEmail);
-  } catch {
-    throw createHttpError(
-      500,
-      'Failed to send the email, please try again later.',
-    );
-  }
-
-  return newUser;
 };
 
-export const verifyUser = (token) => {
-  try {
-    const { email } = jwt.verify(token, getEnvVar('JWT_SECRET'));
-    return UsersCollection.findOneAndUpdate({ email }, { verify: true });
-  } catch (error) {
-    throw createHttpError(401, error.message);
-  }
-};
+// export const verifyUser = (token) => {
+//   try {
+//     const { email } = jwt.verify(token, getEnvVar('JWT_SECRET'));
+//     return UsersCollection.findOneAndUpdate({ email }, { verify: true });
+//   } catch (error) {
+//     throw createHttpError(401, error.message);
+//   }
+// };
 
 export const loginUser = async (payload) => {
   const { email, password } = payload;
   const user = await findUser({ email });
   if (!user) throw createHttpError(401, 'User not found');
 
-  if (!user.verify) throw createHttpError(401, 'Email is not verified');
+  // if (!user.verify) throw createHttpError(401, 'Email is not verified');
 
   const isEqual = await bcrypt.compare(password, user.password);
   if (!isEqual) throw createHttpError(401, 'Unauthorized');

@@ -14,7 +14,7 @@ import {
   registerUserController,
   resetPasswordController,
   sendResetEmailController,
-  verifyController,
+  // verifyController,
 } from '../controllers/auth.js';
 
 const router = Router();
@@ -35,7 +35,7 @@ router.post('/refresh', ctrlWrapper(refreshUserSessionController));
 
 router.post('/logout', ctrlWrapper(logoutUserController));
 
-router.post('/verify', ctrlWrapper(verifyController));
+// router.post('/verify', ctrlWrapper(verifyController));
 
 router.post(
   '/send-reset-email',
@@ -44,7 +44,7 @@ router.post(
 );
 
 router.post(
-  '/reset-password',
+  '/reset-pwd',
   validateBody(resetPasswordSchema),
   ctrlWrapper(resetPasswordController),
 );

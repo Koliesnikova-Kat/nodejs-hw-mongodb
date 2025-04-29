@@ -6,7 +6,7 @@ import {
   registerUser,
   requestResetToken,
   resetPassword,
-  verifyUser,
+  // verifyUser,
 } from '../services/auth.js';
 
 const setupSession = (res, session) => {
@@ -68,14 +68,14 @@ export const logoutUserController = async (req, res) => {
   res.status(204).send();
 };
 
-export const verifyController = async (req, res) => {
-  await verifyUser(req.query.token);
+// export const verifyController = async (req, res) => {
+//   await verifyUser(req.query.token);
 
-  res.json({
-    status: 200,
-    message: 'Email verified!',
-  })
-}
+//   res.json({
+//     status: 200,
+//     message: 'Email verified!',
+//   })
+// }
 
 export const sendResetEmailController = async (req, res) => {
   await requestResetToken(req.body.email);

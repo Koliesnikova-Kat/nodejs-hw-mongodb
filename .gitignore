@@ -4,5 +4,7 @@
 
 src/contacts.json
 
+google-oauth.json
+
 **/temp/**
 **/upload/**
