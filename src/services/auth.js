@@ -11,10 +11,10 @@ import path from 'node:path';
 import fs from 'node:fs/promises';
 import handlebars from 'handlebars';
 import { TEMPLATES_DIR } from '../constants/index.js';
-import {
-  getFullNameFromGoogleTokenPayload,
-  validateCode,
-} from '../utils/googleOAuth2.js';
+// import {
+//   getFullNameFromGoogleTokenPayload,
+//   validateCode,
+// } from '../utils/googleOAuth2.js';
 
 export const findSession = (query) => SessionsCollection.findOne(query);
 
@@ -210,26 +210,29 @@ export const resetPassword = async (payload) => {
   await SessionsCollection.deleteMany({ userId: user._id });
 };
 
-export const loginOrSignupWithGoogle = async (code) => {
-  const loginTicket = await validateCode(code);
+// export const loginOrSignupWithGoogle = async (code) => {
+//   const loginTicket = await validateCode(code);
 
-  const payload = loginTicket.getPayload();
-  if (!payload) throw createHttpError(401);
+//   const payload = loginTicket.getPayload();
+//   if (!payload) throw createHttpError(401);
 
-  let user = await findUser({ email: payload.email });
-  if (!user) {
-    const password = await bcrypt.hash(randomBytes(10), 10);
-    user = await UsersCollection.create({
-      email: payload.email,
-      name: getFullNameFromGoogleTokenPayload(payload),
-      password,
-    });
-  }
+//   let user = await findUser({ email: payload.email });
+//   if (!user) {
+//     const password = await bcrypt.hash(randomBytes(10), 10);
+//     user = await UsersCollection.create({
+//       email: payload.email,
+//       name: getFullNameFromGoogleTokenPayload(payload),
+//       password,
+//       // verify: payload.email_verified,
+//     });
+//   }
 
-  const newSession = createSession();
+//   await SessionsCollection.findOneAndDelete({ userId: user._id });
 
-  return await SessionsCollection.create({
-    userId: user._id,
-    ...newSession,
-  });
-};
+//   const newSession = createSession();
+
+//   return SessionsCollection.create({
+//     userId: user._id,
+//     ...newSession,
+//   });
+// };

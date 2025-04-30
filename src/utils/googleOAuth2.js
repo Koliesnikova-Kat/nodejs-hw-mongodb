@@ -16,6 +16,7 @@ const googleOAuthClient = new OAuth2Client({
 
 export const generateAuthUrl = () => {
   return googleOAuthClient.generateAuthUrl({
+    access_type: 'offline',
     scope: [
       'https://www.googleapis.com/auth/userinfo.email',
       'https://www.googleapis.com/auth/userinfo.profile',
@@ -25,11 +26,10 @@ export const generateAuthUrl = () => {
 
 export const validateCode = async (code) => {
   const response = await googleOAuthClient.getToken(code);
-  if (!response.tokens.id_token) throw createHttpError(401, 'Unauthorized');
+  const idToken = response.tokens.id_token;
+  if (!idToken) throw createHttpError(401, 'Unauthorized');
 
-  const ticket = await googleOAuthClient.verifyIdToken({
-    idToken: response.tokens.id_token,
-  });
+  const ticket = await googleOAuthClient.verifyIdToken({idToken});
 
   return ticket;
 };
