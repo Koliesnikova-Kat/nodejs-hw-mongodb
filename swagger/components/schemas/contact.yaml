@@ -9,7 +9,7 @@ properties:
   _id:
     description: "Contact's id"
     type: string
-    example: 65e4decdd286b30065d54af9
+    example: '65e4decdd286b30065d54af9'
   name:
     description: "Contact's name"
     type: string
@@ -17,7 +17,7 @@ properties:
   phoneNumber:
     description: "Contact's phone number"
     type: string
-    example: +380500000001
+    example: '+380500000001'
   contactType:
     description: "Contact's type"
     type: string
@@ -25,8 +25,8 @@ properties:
   userId:
     description: "User's ID"
     type: string
-    example: 65e4decdd286b30065d54af9
+    example: '65e4decdd286b30065d54af9'
   photo:
     description: "Link to contact's photo"
     type: string
-    example: https://res.cloudinary.com/dbnexyque/image/upload/v1745941617/xz0h1qxwsjndiatgmxzp.jpg
+    example: 'https://res.cloudinary.com/dbnexyque/image/upload/v1745941617/xz0h1qxwsjndiatgmxzp.jpg'

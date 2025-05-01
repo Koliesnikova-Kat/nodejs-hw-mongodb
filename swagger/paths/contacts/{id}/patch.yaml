@@ -12,6 +12,29 @@ parameters:
     schema:
       type: string
       example: '65ca67e7ae7f10c88b598384'
+requestBody:
+  required: false
+  content:
+    multipart/form-data:
+      schema:
+        type: object
+        properties:
+          name:
+            type: string
+            description: New name
+            example: John Doe
+          phoneNumber:
+            type: string
+            description: New phone number
+            example: +380500000001
+          contactType:
+            type: string
+            enum: [personal, home, work]
+          isFavourite:
+            type: boolean
+          photo:
+            type: string
+            format: binary
 responses:
   '200':
     description: 'Change contact`s info'

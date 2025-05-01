@@ -1,0 +1,42 @@
+tags:
+  - Auth
+summary: 'Get Google OAuth URL'
+operationId: getGoogleOAuthUrl
+description: 'Returns the authorization URL that the frontend should redirect the user to in order to begin Google OAuth login.'
+security: []
+responses:
+  '200':
+    description: 'Google OAuth URL returned'
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: 'Successfully retrieved Google OAuth URL!'
+            data:
+              type: object
+              properties:
+                url:
+                  type: string
+                  description: 'Full Google authorization URL'
+                  example: 'https://accounts.google.com/o/oauth2/v2/auth?client_id=...'
+  '400':
+    description: Invalid request
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            status:
+              type: integer
+              example: 400
+            message:
+              type: string
+              example: 'Bad Request'
+  '500':
+    $ref: ../../components/responses/500.yaml
