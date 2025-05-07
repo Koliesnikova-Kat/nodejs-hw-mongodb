@@ -40,11 +40,11 @@ parameters:
     schema:
       type: boolean
       example: true
-  - in: query
-    name: phoneNumber
-    schema:
-      type: string
-      example: +380500000001
+  # - in: query
+  #   name: phoneNumber
+  #   schema:
+  #     type: string
+  #     example: +380500000001
 responses:
   '200':
     description: Successfully found contacts!
@@ -96,5 +96,9 @@ responses:
                 hasPreviousPage:
                   type: boolean
                   example: true
+  '400':
+    $ref: '../../components/responses/400.yaml'
   '401':
     $ref: '../../components/responses/401.yaml'
+  '500':
+    $ref: '../../components/responses/500.yaml'

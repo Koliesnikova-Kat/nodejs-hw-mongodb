@@ -23,6 +23,14 @@ requestBody:
             description: "Contact's phone number"
             type: string
             example: +380500000001
+          email:
+            description: "Contact's email"
+            type: string
+            example: 'test@example.com'
+          isFavourite:
+            description: "Is this contact favourite"
+            type: boolean
+            example: true
           contactType:
             description: "Contact's type"
             type: string
@@ -52,5 +60,9 @@ responses:
             data:
               type: object
               $ref: '../../components/schemas/contact.yaml'
+  '400':
+    $ref: '../../components/responses/400.yaml'
   '401':
     $ref: '../../components/responses/401.yaml'
+  '500':
+    $ref: '../../components/responses/500.yaml'

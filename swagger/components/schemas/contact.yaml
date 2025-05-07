@@ -18,6 +18,14 @@ properties:
     description: "Contact's phone number"
     type: string
     example: '+380500000001'
+  email:
+    description: "Contact's email"
+    type: string
+    example: 'test@example.com'
+  isFavourite:
+    description: "Is this contact favourite"
+    type: boolean
+    example: true
   contactType:
     description: "Contact's type"
     type: string
