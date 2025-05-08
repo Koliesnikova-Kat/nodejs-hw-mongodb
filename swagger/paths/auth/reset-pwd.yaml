@@ -36,6 +36,8 @@ responses:
               example: 'Password has been successfully reset.'
             data:
               type: object
+  '400':
+    $ref: ../../components/responses/400-body.yaml
   '401':
     $ref: ../../components/responses/401.yaml
   '404':

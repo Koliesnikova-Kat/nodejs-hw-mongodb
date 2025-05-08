@@ -61,7 +61,29 @@ responses:
               type: object
               $ref: '../../../components/schemas/contact.yaml'
   '400':
-    $ref: '../../../components/responses/400.yaml'
+    description: 'Invalid request (body or ID)'
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            status:
+              type: integer
+              example: 400
+            message:
+              type: string
+              example: 'Bad Request'
+            data:
+              type: object
+              properties:
+                errors:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Invalid ID format or missing required field'
   '401':
     $ref: '../../../components/responses/401.yaml'
   '404':

@@ -37,6 +37,6 @@ responses:
                   type: string
                   example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'
   '400':
-    $ref: ../../components/responses/400.yaml
+    $ref: ../../components/responses/400-body.yaml
   '500':
     $ref: ../../components/responses/500.yaml
