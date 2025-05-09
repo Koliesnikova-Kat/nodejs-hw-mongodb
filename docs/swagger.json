@@ -172,9 +172,6 @@
               }
             }
           },
-          "400": {
-            "$ref": "#/components/responses/400"
-          },
           "401": {
             "$ref": "#/components/responses/401"
           },
@@ -276,7 +273,7 @@
             }
           },
           "400": {
-            "$ref": "#/components/responses/400"
+            "$ref": "#/components/responses/400-body"
           },
           "401": {
             "$ref": "#/components/responses/401"
@@ -342,7 +339,7 @@
             }
           },
           "400": {
-            "$ref": "#/components/responses/400"
+            "$ref": "#/components/responses/400-body"
           },
           "401": {
             "$ref": "#/components/responses/401"
@@ -451,7 +448,41 @@
             }
           },
           "400": {
-            "$ref": "#/components/responses/400"
+            "description": "Invalid request (body or ID)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 400
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Bad Request"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "errors": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "message": {
+                                "type": "string",
+                                "example": "Invalid ID format or missing required field"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
           },
           "401": {
             "$ref": "#/components/responses/401"
@@ -492,7 +523,7 @@
             "description": "Delete contact by id"
           },
           "400": {
-            "$ref": "#/components/responses/400"
+            "$ref": "#/components/responses/400-body"
           },
           "401": {
             "$ref": "#/components/responses/401"
@@ -576,6 +607,9 @@
                 }
               }
             }
+          },
+          "400": {
+            "$ref": "#/components/responses/400-general"
           },
           "409": {
             "description": "Email is already in use by another user",
@@ -681,6 +715,9 @@
                 }
               }
             }
+          },
+          "400": {
+            "$ref": "#/components/responses/400-general"
           },
           "401": {
             "$ref": "#/components/responses/401"
@@ -814,6 +851,9 @@
               }
             }
           },
+          "400": {
+            "$ref": "#/components/responses/400-body"
+          },
           "404": {
             "$ref": "#/components/responses/404"
           },
@@ -879,6 +919,9 @@
                 }
               }
             }
+          },
+          "400": {
+            "$ref": "#/components/responses/400-body"
           },
           "401": {
             "$ref": "#/components/responses/401"
@@ -1004,7 +1047,7 @@
             }
           },
           "400": {
-            "$ref": "#/components/responses/400"
+            "$ref": "#/components/responses/400-body"
           },
           "500": {
             "$ref": "#/components/responses/500"
@@ -1046,26 +1089,6 @@
                           "example": "https://accounts.google.com/o/oauth2/v2/auth?client_id=..."
                         }
                       }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "integer",
-                      "example": 400
-                    },
-                    "message": {
-                      "type": "string",
-                      "example": "Bad Request"
                     }
                   }
                 }
@@ -1221,36 +1244,6 @@
       }
     },
     "responses": {
-      "400": {
-        "description": "Invalid request",
-        "content": {
-          "application/json": {
-            "schema": {
-              "type": "object",
-              "properties": {
-                "status": {
-                  "type": "integer",
-                  "example": 400
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Bad Request"
-                },
-                "data": {
-                  "type": "object",
-                  "example": {
-                    "errors": [
-                      {
-                        "message": "Email is required"
-                      }
-                    ]
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
       "401": {
         "description": "Unauthorized error",
         "content": {
@@ -1348,6 +1341,60 @@
                       "example": "Something went wrong on the server"
                     }
                   }
+                }
+              }
+            }
+          }
+        }
+      },
+      "400-body": {
+        "description": "Invalid request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "example": 400
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Bad Request"
+                },
+                "data": {
+                  "type": "object",
+                  "example": {
+                    "errors": [
+                      {
+                        "message": "Email is required"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "400-general": {
+        "description": "Bad request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "required": [
+                "status",
+                "message"
+              ],
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "example": 400
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Bad request"
                 }
               }
             }
