@@ -81,7 +81,7 @@
           },
           {
             "in": "query",
-            "name": "type",
+            "name": "contactType",
             "schema": {
               "type": "string",
               "enum": [
@@ -99,7 +99,8 @@
             "schema": {
               "type": "boolean",
               "example": true
-            }
+            },
+            "description": "Filter by favourite contacts"
           }
         ],
         "responses": {
@@ -339,7 +340,7 @@
             }
           },
           "400": {
-            "$ref": "#/components/responses/400-body"
+            "$ref": "#/components/responses/400-general"
           },
           "401": {
             "$ref": "#/components/responses/401"
@@ -523,7 +524,7 @@
             "description": "Delete contact by id"
           },
           "400": {
-            "$ref": "#/components/responses/400-body"
+            "$ref": "#/components/responses/400-general"
           },
           "401": {
             "$ref": "#/components/responses/401"

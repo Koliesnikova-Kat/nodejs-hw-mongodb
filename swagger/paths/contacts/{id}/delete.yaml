@@ -16,7 +16,7 @@ responses:
   '204':
     description: 'Delete contact by id'
   '400':
-    $ref: '../../../components/responses/400-body.yaml'
+    $ref: '../../../components/responses/400-general.yaml'
   '401':
     $ref: '../../../components/responses/401.yaml'
   '404':

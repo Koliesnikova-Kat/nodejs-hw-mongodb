@@ -34,7 +34,7 @@ responses:
               type: object
               $ref: '../../../components/schemas/contact.yaml'
   '400':
-    $ref: '../../../components/responses/400-body.yaml'
+    $ref: '../../../components/responses/400-general.yaml'
   '401':
     $ref: '../../../components/responses/401.yaml'
   '404':

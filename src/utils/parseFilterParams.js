@@ -8,17 +8,18 @@ const parseType = (type) => {
   if (isType(type)) return type;
 };
 
-const parseBoolean = (boolean) => {
-  const isString = typeof boolean === 'string';
-  if (!isString) return;
+const parseBoolean = (value) => {
+  if (typeof value === 'boolean') return value;
 
-  const normalizedBoolean = boolean.toLowerCase().trim();
+  if (typeof value === 'string') {
+    const normalized = value.toLowerCase().trim();
+    if (normalized === 'true') return true;
+    if (normalized === 'false') return false;
+  }
 
-  if (normalizedBoolean === 'true') return true;
-  if (normalizedBoolean === 'false') return false;
-
-  return;
+  return undefined;
 };
+
 
 const parsePhoneNumber = (number) => {
   const isString = typeof number === 'string';
