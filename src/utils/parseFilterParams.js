@@ -1,11 +1,13 @@
 import { typeList } from '../constants/contacts.js';
 
-const parseType = (type) => {
-  const isString = typeof type === 'string';
-  if (!isString) return;
+const parseType = (contactType) => {
+  if (typeof contactType !== 'string') return;
 
-  const isType = (type) => typeList.includes(type);
-  if (isType(type)) return type;
+  const normalizedType = contactType.toLowerCase().trim();
+
+  if (typeList.includes(normalizedType)) {
+    return normalizedType;
+  }
 };
 
 const parseBoolean = (value) => {
